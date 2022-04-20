@@ -14,18 +14,16 @@ ifdef::backend-html5[]
 // print the toc here (not at the default position)
 //toc::[]
 
-== Theorie
 
-=== UML-CLD
+== UML-CLD
 
 
-== Praxis
 
-=== plantUML
+== plantUML
 
-=== asciidoc
+== asciidoc
 
-==== Wie mache ich ein adoc-Document?
+=== Wie mache ich ein adoc-Document?
 AsciiDoc-Header
 [source, asciidoc]
 ----
@@ -53,9 +51,9 @@ inside the adoc-Document:
 image::uml2.png[uml2,400]
 
 
-=== git
+== git
 
-==== How to create a git-repo from scratch?
+=== How to create a git-repo from scratch?
 
 1) create a folder
 [source, bash]
@@ -112,15 +110,15 @@ git checkout main
 git push origin main
 ----
 
-=== docker
+== docker
 Docker wird verwendet, um auf verschiedenen Maschinen die exakt
 gleiche Umgebung zu erzeugen.
 
-==== Aufbau
+=== Aufbau
 
 image::dockerfile.png[dockerfile,400]
 
-==== Dockerfile
+=== Dockerfile
 Dockerfile ist das Kochrezept für das Image hier werden
 die Working areas und sonstiges definiert.
 
@@ -156,8 +154,61 @@ CMD: Kommt nach ENTRYPOINT
 CMD ["ls -al"] (listet alle Dateien im Container auf)
 ----
 
-==== Docker Image
+=== Docker Image
 Docker Image ist wie eine CD, auf der selbst nichts verändert werden kann.
 
-==== Docker Container
+=== Docker Container
 Der Docker Container ist wie eine Glasscheibe über der CD auf der Änderungen geschrieben werden können.
+
+==== docker build
+Docker build ist ein Befehl, welcher aus einem Dockerfile ein Image erzeugt.
+
+*Beispiel:*
+[source, dockerfile]
+----
+docker build -t my-postgres . (= der "." steht für das aktuelle Verzeichnis)
+----
+
+==== docker run
+Docker run ist ein Befehl, welcher ein Image ausführt.
+[source, dockerfile]
+----
+docker run my-postgres
+----
+
+Optional Parameter:
+
+* -it: interactive terminal -> connect via ssh
+* --rm: remove container after execution
+* --name: name of the container
+* -p: port mapping
+* -v: volume mapping
+* -e: environment variable
+* -d: execute in background daemon mode
+
+
+==== weiter Befehle
+
+* service docker start: startet den Docker-Daemon
+* docker stop: Stoppt den Docker-Daemon
+* docker image/container ls: Listet alle Container und Images auf
+* docker ps (=container ls): Listet alle Container auf
+* docker prune (=löscht alle container)
+* docker rm (löscht container)
+* docker rmi (=löscht image)
+
+
+=== Volumes
+Um nach löschen eines Containers noch Daten zu behalten, kann ein Volume verwendet werden.
+
+==== Bind Mount
+Absoulter Pfad am Host wird als Volume im Container verwendet -> deprecated
+
+==== Volume Mount
+Directory am Host wird als Volume im Container verwendet
+-> wird der Container neu gestartet, werden die Daten nicht gelöscht
+
+
+== Docker Compose
+Docker Compose verschachtelt mehrere dockerfile/images in einem yaml-File.
+Um vollständige Applikationen einfach runnable zu machen.
