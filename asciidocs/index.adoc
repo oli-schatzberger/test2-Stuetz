@@ -1,6 +1,6 @@
-= My Project
-firstname lastname
-1.0.0, yyyy-mm-dd: Some notes
+= 2. Test ITP
+Oliver Schatzberger
+1.0.0, 2004-11-18: Some notes
 ifndef::imagesdir[:imagesdir: images]
 //:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
 :sourcedir: ../src/main/java
@@ -14,8 +14,150 @@ ifdef::backend-html5[]
 // print the toc here (not at the default position)
 //toc::[]
 
-== Header 1
+== Theorie
+
+=== UML-CLD
 
 
-=== Header 2
+== Praxis
 
+=== plantUML
+
+=== asciidoc
+
+==== Wie mache ich ein adoc-Document?
+AsciiDoc-Header
+[source, asciidoc]
+----
+= My Project
+firstname lastname
+1.0.0, yyyy-mm-dd: Some notes
+ifndef::imagesdir[:imagesdir: images]
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+----
+
+
+==== Wie bette ich ein plantuml-Diagram ein (include vs erstellen im adoc-Document)
+
+include in the adoc-Document:
+
+image::uml1.png[uml1,400]
+
+inside the adoc-Document:
+
+image::uml2.png[uml2,400]
+
+
+=== git
+
+==== How to create a git-repo from scratch?
+
+1) create a folder
+[source, bash]
+----
+mkdir myrepo
+----
+
+2) initialize a git-repo
+[source, bash]
+----
+git init
+----
+
+3) add a remote host
+[source, bash]
+----
+git remote add origin url
+----
+
+4) add all files to the repo
+[source, bash]
+----
+git add .
+----
+
+5) commit the changes
+[source, bash]
+----
+git commit -m "initial commit"
+----
+
+6) create a new main branch
+[source, bash]
+----
+git branch -M main
+----
+
+7) copy branch
+[source, bash]
+----
+git branch -c main
+----
+
+
+8) checkout the branch you want to work on
+[source, bash]
+----
+git checkout main
+----
+
+9) push the repo to the remote host
+[source, bash]
+----
+git push origin main
+----
+
+=== docker
+Docker wird verwendet, um auf verschiedenen Maschinen die exakt
+gleiche Umgebung zu erzeugen.
+
+==== Aufbau
+
+image::dockerfile.png[dockerfile,400]
+
+==== Dockerfile
+Dockerfile ist das Kochrezept für das Image hier werden
+die Working areas und sonstiges definiert.
+
+*Commands:*
+
+FROM: Name des Images, welches verwendet werden soll
+[source, dockerfile]
+----
+FROM postgres:14-bullseye (immer Version angeben)
+----
+
+RUN: Befehle, die beim Start des Images ausgeführt werden sollen
+[source, dockerfile]
+----
+RUN ls -al
+----
+
+COPY: ausgewählte Dateien, welche im Container gespeichert werden sollen
+[source, dockerfile]
+----
+COPY . /app ("." alle Verzeichnise im aktuellen Container werden in das Arbeitsverzeichnis "/app" kopiert)
+----
+
+ENTRYPOINT: Wird verwendet um exectuable-Dateien im Container zu starten
+[source, dockerfile]
+----
+ENTRYPOINT ["/bin/bash"] (default entrypoint in ubuntu; öffnet interaktive Shell)
+----
+
+CMD: Kommt nach ENTRYPOINT
+[source, dockerfile]
+----
+CMD ["ls -al"] (listet alle Dateien im Container auf)
+----
+
+==== Docker Image
+Docker Image ist wie eine CD, auf der selbst nichts verändert werden kann.
+
+==== Docker Container
+Der Docker Container ist wie eine Glasscheibe über der CD auf der Änderungen geschrieben werden können.
