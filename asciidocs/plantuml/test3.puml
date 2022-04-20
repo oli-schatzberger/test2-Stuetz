@@ -1,0 +1,90 @@
+@startuml
+class Passagier{
+    int: passagiernummer
+    String: name
+    String: mrms
+    String: titel
+}
+
+class Flug{
+    LocalDate: abflugszeit
+    LocalDate: ankuftzeit
+    String flugnummer
+    + int calcdistance()
+    String: verfügbarkeit
+}
+
+class Buchung{
+    LocalDate: start
+    LocalDate: ende
+}
+
+class Fluggesellschaft{
+    String: gesellschaftid
+    String: name
+    String: firmensitz
+}
+
+class Flugzeug{
+    int flugzeugnummer
+    String typ
+    String hersteller
+    int reichweite
+
+
+}
+
+class Flughafen{
+    String name
+    String stadt
+    String land
+    int kapazitaet
+    String code
+}
+
+class Klasse{
+    int rang
+    String typ
+    double preis
+}
+
+class Ticket{
+    int ticketnummer
+    LocalDate ausstelldatum
+    double preis
+    String waehrung
+}
+
+class BoardingCard{
+    int reihe
+    char sitz
+    String raucher
+}
+
+class Sitz{
+    boolean belegt
+
+}
+
+Passagier"*" -- "*"Flug
+
+(Passagier, Flug) .. Buchung
+
+Fluggesellschaft"1" -- "*"Flugzeug
+
+Flug"*" -- "1"Flugzeug
+
+Flug -- Flughafen: startflughafen >
+Flug -- Flughafen: startflughafen >
+
+Fluggesellschaft"1" -- "*"Flug
+
+Flug"1" -- "*"Klasse
+
+Ticket"*" -- "1"Passagier
+Ticket"*" -- "1"Flug
+
+BoardingCard -up-|> Ticket
+
+Klasse"1" -- "*"Sitz: sitze >
+@enduml
