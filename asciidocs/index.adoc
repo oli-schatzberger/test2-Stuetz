@@ -212,3 +212,21 @@ Directory am Host wird als Volume im Container verwendet
 == Docker Compose
 Docker Compose verschachtelt mehrere dockerfile/images in einem yaml-File.
 Um vollständige Applikationen einfach runnable zu machen.
+
+Diese Container werden in einem virtuellen Netzwerk gestartet und können so problemlos aufeinander zugreifen
+
+image::docker-compose.png[docker-compose,400]
+
+Anwendungsfälle:
+
+* Full-Scale-Applikation
+* Websiten
+* Apps
+
+Command:
+[source, bash]
+----
+docker-compose up (=selbes Verzeichnis wie docker-compose.yml)
+----
+
+mit -d wird der Container im Hintergrund laufen
