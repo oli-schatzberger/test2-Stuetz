@@ -22,7 +22,7 @@ ifdef::backend-html5[]
 == plantUML
 [plantuml, uml3]
 ----
-include::/plantuml/test3.puml[puml]
+include::plantuml/test3.puml[]
 ----
 
 == asciidoc
