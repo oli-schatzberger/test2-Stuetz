@@ -50,6 +50,62 @@ inside the adoc-Document:
 
 image::uml2.png[uml2,400]
 
+=== Listen
+==== Geordnete Liste
+----
+. List item 1
+. List item 2
+.. List item 2.1
+.. List item 2.2
+.List item 3
+----
+. L1
+. L2
+.. L2.1
+
+==== Ungeordnete Liste
+----
+* Item
+* Item
+** Subitem
+----
+* Item
+* Item
+** Subitem
+
+=== Code Einbinden
+----
+[source, java]
+----
+
+[source, java]
+----
+public static void main(){
+    System.out.println("Hello World!")
+}
+----
+
+=== Images einfügen
+----
+image::smiley.png[100, 100] //in eckigen klammern wird höhe und breite mitgegeben
+----
+image::smiley.png[100, 100]
+
+=== Checkbox
+
+=== Text Formatierung
+==== Farbe
+----
+[blue]#blau# ist der himmel
+----
+[blue]#blau# ist der himmel
+
+==== Fett
+----
+*fett* normal
+----
+*fett* normal
+
 
 == git
 
